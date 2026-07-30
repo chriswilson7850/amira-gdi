@@ -48,37 +48,47 @@ export default function ProductCarousel() {
             <ChevronRight className="w-5 h-5 text-foreground" />
           </button>
 
-          {/* Product Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {getSlideItems(currentSlide).map((product) => (
-              <Link
-                key={product.id}
-                href={`/${locale}/product/${product.slug}`}
-                className="group bg-white rounded-lg border border-border overflow-hidden hover:shadow-lg transition-shadow"
-              >
-                <div className="aspect-square bg-gray-100 flex items-center justify-center p-4">
-                  <div className="w-full h-full bg-linear-to-br from-gold-light to-gold/30 rounded-lg flex items-center justify-center">
-                    <span className="text-4xl font-bold text-primary-dark opacity-50">
-                      {product.name.split(' ')[0]}
-                    </span>
-                  </div>
+          {/* Product Carousel Track */}
+          <div className="overflow-hidden">
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            >
+              {Array.from({ length: totalSlides }).map((_, slideIndex) => (
+                <div key={slideIndex} className="flex gap-6 min-w-0 shrink-0" style={{ width: '100%' }}>
+                  {getSlideItems(slideIndex).map((product) => (
+                    <Link
+                      key={product.id}
+                      href={`/${locale}/product/${product.slug}`}
+                      className="group bg-white rounded-lg border border-border overflow-hidden hover:shadow-lg transition-shadow flex-1 min-w-0"
+                      style={{ width: '25%' }}
+                    >
+                      <div className="aspect-square bg-gray-100 flex items-center justify-center p-4">
+                        <div className="w-full h-full bg-linear-to-br from-gold-light to-gold/30 rounded-lg flex items-center justify-center">
+                          <span className="text-4xl font-bold text-primary-dark opacity-50">
+                            {product.name.split(' ')[0]}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="p-4">
+                        {product.rating > 0 && (
+                          <div className="flex items-center gap-1 mb-2">
+                            <Star className="w-4 h-4 fill-gold text-gold" />
+                            <span className="text-xs text-text-muted">★★★★★</span>
+                          </div>
+                        )}
+                        <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-2">
+                          {product.name}
+                        </h3>
+                        <p className="text-lg font-bold text-primary">
+                          {formatPrice(product.price, CURRENCY.code)}
+                        </p>
+                      </div>
+                    </Link>
+                  ))}
                 </div>
-                <div className="p-4">
-                  {product.rating > 0 && (
-                    <div className="flex items-center gap-1 mb-2">
-                      <Star className="w-4 h-4 fill-gold text-gold" />
-                      <span className="text-xs text-text-muted">★★★★★</span>
-                    </div>
-                  )}
-                  <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-2">
-                    {product.name}
-                  </h3>
-                  <p className="text-lg font-bold text-primary">
-                    {formatPrice(product.price, CURRENCY.code)}
-                  </p>
-                </div>
-              </Link>
-            ))}
+              ))}
+            </div>
           </div>
 
           {/* Slide Indicators */}
