@@ -11,17 +11,44 @@ import { CURRENCY } from '@/lib/constants';
 export default function ProductCarousel() {
   const locale = useLocale();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [itemsPerSlide, setItemsPerSlide] = useState(1);
   const featured = products.filter((p) => p.featured);
-  const itemsPerSlide = 4;
   const totalSlides = Math.ceil(featured.length / itemsPerSlide);
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % totalSlides);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
 
   useEffect(() => {
-    const timer = setInterval(nextSlide, 5000);
-    return () => clearInterval(timer);
+    const getItemsPerSlide = () => {
+      if (window.innerWidth >= 1024) return 4;
+      if (window.innerWidth >= 640) return 2;
+      return 1;
+    };
+
+    const handleResize = () => {
+      const newCount = getItemsPerSlide();
+      setItemsPerSlide((prev) => {
+        if (prev !== newCount) {
+          setCurrentSlide(0);
+          return newCount;
+        }
+        return prev;
+      });
+    };
+
+    setItemsPerSlide(getItemsPerSlide());
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Auto-slide
+  useEffect(() => {
+    if (totalSlides <= 1) return;
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % totalSlides);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [totalSlides]);
 
   const getSlideItems = (slideIndex: number) => {
     const start = slideIndex * itemsPerSlide;
@@ -55,17 +82,16 @@ export default function ProductCarousel() {
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
               {Array.from({ length: totalSlides }).map((_, slideIndex) => (
-                <div key={slideIndex} className="flex gap-6 min-w-0 shrink-0" style={{ width: '100%' }}>
+                <div key={slideIndex} className="flex gap-4 sm:gap-6 min-w-0 shrink-0" style={{ width: '100%' }}>
                   {getSlideItems(slideIndex).map((product) => (
                     <Link
                       key={product.id}
                       href={`/${locale}/product/${product.slug}`}
                       className="group bg-white rounded-lg border border-border overflow-hidden hover:shadow-lg transition-shadow flex-1 min-w-0"
-                      style={{ width: '25%' }}
                     >
                       <div className="aspect-square bg-gray-100 flex items-center justify-center p-4">
                         <div className="w-full h-full bg-linear-to-br from-gold-light to-gold/30 rounded-lg flex items-center justify-center">
-                          <span className="text-4xl font-bold text-primary-dark opacity-50">
+                          <span className="text-3xl sm:text-4xl font-bold text-primary-dark opacity-50">
                             {product.name.split(' ')[0]}
                           </span>
                         </div>
