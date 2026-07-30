@@ -1,0 +1,179 @@
+{
+  "site": {
+    "title": "Amira Gold Investment Limited",
+    "tagline": "Gold und Silber - Münzen und Barren",
+    "description": "Ihr vertrauenswürdiger Partner für Edelmetalle in Investmentqualität in Dubai",
+    "url": "https://amira-gdi.live"
+  },
+  "nav": {
+    "home": "Startseite",
+    "shop": "Shop",
+    "cart": "Warenkorb",
+    "myAccount": "Mein Konto",
+    "aboutUs": "Über uns",
+    "storage": "Lagerung",
+    "language": "Deutsch",
+    "openMenu": "Menü öffnen",
+    "skipToContent": "Zum Inhalt springen"
+  },
+  "home": {
+    "hero": {
+      "title": "Brandneue Münzen und Barren – direkt von offiziellen Prägestätten",
+      "subtitle": "Gold und Silber - Edelmetall-Expertise seit 1998",
+      "cta": "Shop"
+    },
+    "reviews": "80+ Bewertungen",
+    "mintsTitle": "Wir sind offizielle Vertriebspartner der folgenden Prägestätten:"
+  },
+  "shop": {
+    "title": "Amira GDI – Shop",
+    "description": "Alle Artikel in unserem Sortiment stammen von LBMA-zertifizierten Herstellern. Dies garantiert höchste Reinheit, ethische Beschaffung und uneingeschränkte weltweite Handelbarkeit.",
+    "allProducts": "Alle Produkte",
+    "goldBars": "Goldbarren",
+    "silverBars": "Silberbarren",
+    "silverCoins": "Silbermünzen",
+    "sort": "Shop Sortierung",
+    "defaultSort": "Standardsortierung",
+    "sortPopularity": "Nach Beliebtheit sortieren",
+    "sortRating": "Nach Bewertung sortieren",
+    "sortLatest": "Nach Neuheit sortieren",
+    "sortPriceLow": "Nach Preis sortieren: aufsteigend",
+    "sortPriceHigh": "Nach Preis sortieren: absteigend",
+    "addToCart": "In den Warenkorb",
+    "quantity": "Menge",
+    "inStock": "Auf Lager",
+    "outOfStock": "Nicht auf Lager",
+    "sku": "Artikelnummer",
+    "categories": "Kategorien",
+    "description": "Beschreibung",
+    "additionalInfo": "Zusätzliche Informationen",
+    "reviews": "Bewertungen",
+    "relatedProducts": "Ähnliche Produkte"
+  },
+  "cart": {
+    "title": "Warenkorb",
+    "empty": "Ihr Warenkorb ist leer.",
+    "checkout": "Zur Kasse",
+    "total": "Gesamtsumme",
+    "remove": "Entfernen"
+  },
+  "myAccount": {
+    "title": "Mein Konto",
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "rememberMe": "Angemeldet bleiben",
+    "lostPassword": "Passwort vergessen?",
+    "logout": "Abmelden"
+  },
+  "about": {
+    "title": "Über uns",
+    "heading": "Amira Gold Investment Limited – Edelmetall-Exzellenz seit 1998",
+    "p1": "Amira Gold Investment Limited ist Ihr vertrauenswürdiger Partner für Investment- und Sammlermünzen sowie Edelmetallbarren und maßgeschneiderte Prägungen. Als familiengeführtes Unternehmen mit deutschen Wurzeln vereinen wir seit 1998 jahrzehntelange Erfahrung, fundierte Expertise und ein internationales Netzwerk – jetzt im Herzen Dubais.",
+    "p2": "Unter der Führung unseres erfahrenen Managementteams führt Amira Gold Investment Limited ein erfolgreiches Geschäftsmodell und umfassende Branchenkenntnisse fort und vereint deutsche Präzision und Qualität mit globaler Reichweite in den Vereinigten Arabischen Emiraten.",
+    "p3": "Als offizieller Vertriebspartner führender Prägestätten bieten wir unseren Kunden nicht nur LBMA-zertifizierte Investmentbarren, sondern auch exklusive, limitierte Sammlermünzen und die neuesten Ausgaben von Anlagemünzen.",
+    "p4": "Bei Amira Gold Investment Limited finden Sie einen kompetenten, zuverlässigen und persönlichen Partner, der Sie mit Leidenschaft und Fachwissen unterstützt. Persönliche Beratung, maßgeschneiderte Lösungen und höchste Diskretion stehen stets an erster Stelle."
+  },
+  "storage": {
+    "title": "Sichere Lagerung für Ihre Edelmetalle",
+    "subtitle": "für Ihre Edelmetalle",
+    "p1": "Neben dem Kauf von Gold und Silber in Investmentqualität bieten wir unseren Kunden flexible und hochsichere Lagerlösungen – zugeschnitten auf die individuellen Bedürfnisse jedes Anlegers.",
+    "p2": "Physische Edelmetalle sind ein greifbarer, krisensicherer Vermögenswert – aber sie benötigen eine Infrastruktur, die ihrem Wert entspricht. Durch unsere Partnerschaften bieten wir sichere und flexible Lagerlösungen, die auf die Bedürfnisse unserer Kunden zugeschnitten sind.",
+    "vintageVaults": {
+      "title": "Vintage Vaults",
+      "location": "Mall of the Emirates · Dubai",
+      "description": "Eine exklusive Tresoranlage mit individuell zugewiesenen Schließfächern und vollem persönlichem Zugang – entwickelt für Anleger, die die Kontrolle über ihre Vermögenswerte behalten möchten, unterstützt durch institutionelle Sicherheit.",
+      "features": [
+        "Stahlverstärkte Tresore, 24/7-Überwachung, direkte Anbindung an die Dubai-Polizei",
+        "Versicherungsschutz bis zu 2 Mio. AED",
+        "Dual-Key-System — nur Sie haben Zugang zu Ihrem Schließfach",
+        "Strenge NDAs für alle Mitarbeiter, volle Privatsphäre garantiert",
+        "Schließfachgrößen XXS bis XXL, Mietzeiträume von 3 Monaten bis 10 Jahren",
+        "Täglicher Zugang von 10:00 bis Mitternacht, einschließlich Wochenenden"
+      ],
+      "cta": "Vintage Vaults besuchen"
+    },
+    "loomis": {
+      "title": "Loomis Lagerung",
+      "location": "Zollgebundenes Lager · Dubai",
+      "description": "Unser offizieller Langzeitlagerungspartner. Ein hochsicheres, zollgebundenes Lager für größere Bestände. Die Vermögenswerte werden sofort nach dem Kauf gesichert und durch 24/7 professionelle Wachdienste geschützt.",
+      "features": [
+        "Konzipiert für die Langzeitlagerung größerer Bestände",
+        "24-Stunden professioneller Sicherheitsdienst",
+        "Direkt in das Bestandsverwaltungssystem integriert",
+        "Persönlicher Zugang und regelmäßige Besuche sind grundsätzlich nicht vorgesehen",
+        "Auszahlung jederzeit auf Anfrage möglich"
+      ],
+      "cta": "Anfrage zu Loomis"
+    },
+    "comparisonTitle": "Welche Lösung ist die richtige für Sie?",
+    "beyondStorage": "Über die Lagerung hinaus: Sicherheit, die Sie überprüfen können",
+    "features": {
+      "source": {
+        "title": "Direkt vom Hersteller",
+        "desc": "Offizieller Vertriebspartner führender Prägestätten mit direktem Bezug von Gold und Silber."
+      },
+      "lbma": {
+        "title": "LBMA-zertifizierte Produkte",
+        "desc": "Ausschließlich LBMA-akkreditierte Gold- und Silberprodukte in Investmentqualität. Höchste Reinheit und weltweite Handelbarkeit."
+      },
+      "delivery": {
+        "title": "Versicherte Lieferung",
+        "desc": "Vollständig versicherter Geldtransporter-Lieferservice durch unseren Partner zu Ihnen nach Hause."
+      },
+      "regulated": {
+        "title": "UAE-reguliert",
+        "desc": "Volle Einhaltung der Vorschriften der UAE Federal Tax Authority, AML und KYC bei jeder Transaktion."
+      }
+    }
+  },
+  "footer": {
+    "address": "Dubai, Vereinigte Arabische Emirate",
+    "phone": "",
+    "email": "sales@amira-gdi.live",
+    "legalNotice": "Impressum",
+    "gtc": "Allgemeine Geschäftsbedingungen (AGB)",
+    "privacy": "Datenschutz- und Cookie-Richtlinie",
+    "aml": "AML- & KYC-Richtlinie",
+    "shipping": "Versand- und Zahlungsbedingungen",
+    "faq": "Häufig gestellte Fragen (FAQ)",
+    "copyright": "© 2026 von Amira Gold Investment Limited",
+    "poweredBy": "bereitgestellt von"
+  },
+  "common": {
+    "loading": "Wird geladen...",
+    "error": "Ein Fehler ist aufgetreten",
+    "notFound": "Seite nicht gefunden",
+    "backToHome": "Zurück zur Startseite",
+    "chatWhatsApp": "Chat auf WhatsApp",
+    "nextPriceUpdate": "Nächste Preisaktualisierung",
+    "scrollToTop": "Nach oben scrollen",
+    "readMore": "Weiterlesen",
+    "viewDetails": "Details anzeigen"
+  },
+  "faq": {
+    "title": "Häufig gestellte Fragen (FAQ) – Amira Gold Investment Limited",
+    "sections": {
+      "about": "1. Über Amira Gold Investment Limited",
+      "ordering": "2. Bestellung & Zahlung",
+      "shipping": "3. Versand & Lieferung",
+      "aml": "4. AML & Compliance, Dokumentation & Geldherkunft",
+      "b2b": "5. Geschäftskunden & B2B",
+      "dataProtection": "6. Datenschutz & Sicherheit im Webshop",
+      "storage": "7. Lagerung & Flexibilität",
+      "vat": "8. Mehrwertsteuer, Gebühren & rechtliche Informationen",
+      "dubaiMarket": "9. Dubai Goldmarkt & Standortvorteile",
+      "authenticity": "10. Echtheitsgarantie, Qualität, Reinheit & LBMA-Zertifizierung",
+      "products": "11. Produktpalette & Investment",
+      "excellence": "12. Das Excellence-Portfolio: Einzigartigkeit für Top-Investoren"
+    }
+  },
+  "legal": {
+    "legalNotice": "Impressum",
+    "gtc": "Allgemeine Geschäftsbedingungen (AGB)",
+    "privacy": "Datenschutz- und Cookie-Richtlinie",
+    "aml": "AML- & KYC-Richtlinie",
+    "shipping": "Versand- und Zahlungsbedingungen"
+  }
+}

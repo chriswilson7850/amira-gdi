@@ -1,0 +1,179 @@
+{
+  "site": {
+    "title": "Amira Gold Investment Limited",
+    "tagline": "Gold and silver - coins and bars",
+    "description": "Your trusted partner for investment-grade precious metals in Dubai",
+    "url": "https://amira-gdi.live"
+  },
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "cart": "Cart",
+    "myAccount": "My account",
+    "aboutUs": "About Us",
+    "storage": "Storage",
+    "language": "English",
+    "openMenu": "Open menu",
+    "skipToContent": "Skip to content"
+  },
+  "home": {
+    "hero": {
+      "title": "Brand new bullion coins and bars – directly from official mints",
+      "subtitle": "Gold and Silver - Precious Metals Expertise Since 1998",
+      "cta": "Shop"
+    },
+    "reviews": "80+ Reviews",
+    "mintsTitle": "We are official distributors of the following mints:"
+  },
+  "shop": {
+    "title": "Amira GDI – Shop",
+    "description": "All items in our product range come from LBMA-certified manufacturers. This guarantees the highest purity, ethical sourcing, and unrestricted global tradability.",
+    "allProducts": "All Products",
+    "goldBars": "Gold bars",
+    "silverBars": "Silver bars",
+    "silverCoins": "Silver coins",
+    "sort": "Shop order",
+    "defaultSort": "Default sorting",
+    "sortPopularity": "Sort by popularity",
+    "sortRating": "Sort by average rating",
+    "sortLatest": "Sort by latest",
+    "sortPriceLow": "Sort by price: low to high",
+    "sortPriceHigh": "Sort by price: high to low",
+    "addToCart": "Add to cart",
+    "quantity": "Quantity",
+    "inStock": "In stock",
+    "outOfStock": "Out of stock",
+    "sku": "SKU",
+    "categories": "Categories",
+    "description": "Description",
+    "additionalInfo": "Additional information",
+    "reviews": "Reviews",
+    "relatedProducts": "Related products"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is currently empty.",
+    "checkout": "Proceed to Checkout",
+    "total": "Total",
+    "remove": "Remove"
+  },
+  "myAccount": {
+    "title": "My Account",
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "rememberMe": "Remember me",
+    "lostPassword": "Lost your password?",
+    "logout": "Logout"
+  },
+  "about": {
+    "title": "About Us",
+    "heading": "Amira Gold Investment Limited – Precious Metals Excellence Since 1998",
+    "p1": "Amira Gold Investment Limited is your trusted partner for investment and collectible coins, as well as bullion bars and customized minting solutions. As a family-owned company with German roots, we have combined decades of experience, in-depth expertise and an international network since 1998 – now operating from the heart of Dubai.",
+    "p2": "Under the leadership of our experienced management team, Amira Gold Investment Limited continues a successful business model and extensive industry knowledge, bringing German precision and quality with global reach to the United Arab Emirates.",
+    "p3": "As an official distributor of leading mints, we offer our clients not only LBMA-certified investment-grade bullion bars, but also exclusive, limited-edition collectible coins and the latest releases of investment coins, including Maple Leaf, Britannia, Kangaroo, Vienna Philharmonic and Krugerrand.",
+    "p4": "At Amira Gold Investment Limited, you will find a competent, reliable and personal partner who supports you with passion and expertise. Personal consultation, tailor-made solutions, and the highest level of discretion are always our top priorities."
+  },
+  "storage": {
+    "title": "Secure storage solutions for your precious metals",
+    "subtitle": "for your precious metals",
+    "p1": "In addition to the purchase of investment-grade gold and silver, we offer our clients flexible and highly secure storage solutions – tailored to the individual needs of every investor.",
+    "p2": "Physical precious metals are a tangible, crisis-proof asset – but they require infrastructure that matches their value. Through our partnerships, we offer secure and flexible storage solutions tailored to our clients' needs.",
+    "vintageVaults": {
+      "title": "Vintage Vaults",
+      "location": "Mall of the Emirates · Dubai",
+      "description": "An exclusive vault facility offering individually allocated safe deposit boxes with full personal access – designed for investors who want hands-on control over their assets, backed by institutional-grade security.",
+      "features": [
+        "Steel-reinforced vaults, 24/7 monitoring, direct Dubai Police linkage",
+        "Insurance coverage up to AED 2 million",
+        "Dual-key system — only you hold access to your box",
+        "Strict NDAs for all staff, full privacy guaranteed",
+        "Box sizes XXS to XXL, rental periods ranging from 3 months to 10 years",
+        "Daily access 10:00 AM to midnight, including weekends"
+      ],
+      "cta": "Visit Vintage Vaults"
+    },
+    "loomis": {
+      "title": "Loomis Storage",
+      "location": "Customs-Bonded Warehouse · Dubai",
+      "description": "Our official long-term storage partner. A high-security, customs-bonded warehouse built for larger holdings. Assets are secured immediately after purchase and protected by 24/7 professional guard services.",
+      "features": [
+        "Designed for long-term storage of larger holdings",
+        "24-hour professional security guard service",
+        "Directly integrated with inventory management",
+        "Personal access and regular visits are generally not intended",
+        "Withdrawal available at any time upon request"
+      ],
+      "cta": "Inquire About Loomis"
+    },
+    "comparisonTitle": "Which solution is right for you?",
+    "beyondStorage": "Beyond Storage: Security You Can Verify",
+    "features": {
+      "source": {
+        "title": "Straight from Source",
+        "desc": "Official distribution partner of leading mints, sourcing gold and silver directly from the mint."
+      },
+      "lbma": {
+        "title": "LBMA-certified products",
+        "desc": "Exclusively LBMA-accredited, investment-grade gold and silver. Ensuring the highest purity and global tradability."
+      },
+      "delivery": {
+        "title": "Insured Delivery",
+        "desc": "Fully insured armored truck delivery via our partner to your home."
+      },
+      "regulated": {
+        "title": "UAE Regulated",
+        "desc": "Full compliance with UAE Federal Tax Authority, AML, and KYC requirements on every transaction."
+      }
+    }
+  },
+  "footer": {
+    "address": "Dubai, United Arab Emirates",
+    "phone": "",
+    "email": "sales@amira-gdi.live",
+    "legalNotice": "Legal notice",
+    "gtc": "General Terms and Conditions (GTC)",
+    "privacy": "Privacy Policy & Cookie Policy",
+    "aml": "AML & KYC Policy",
+    "shipping": "Shipping & Payment Terms",
+    "faq": "Frequently Asked Questions (FAQ)",
+    "copyright": "© 2026 by Amira Gold Investment Limited",
+    "poweredBy": "powered by"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "notFound": "Page not found",
+    "backToHome": "Back to Home",
+    "chatWhatsApp": "Chat on WhatsApp",
+    "nextPriceUpdate": "Next price update",
+    "scrollToTop": "Scroll to top",
+    "readMore": "Read more",
+    "viewDetails": "View details"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions (FAQ) – Amira Gold Investment Limited",
+    "sections": {
+      "about": "1. About Amira Gold Investment Limited",
+      "ordering": "2. Ordering & Payment",
+      "shipping": "3. Shipping & Delivery",
+      "aml": "4. AML & Compliance, Documentation & Source of Funds",
+      "b2b": "5. Business Clients & B2B (Corporate Clients)",
+      "dataProtection": "6. Data Protection & Security in the Webshop",
+      "storage": "7. Storage & Flexibility",
+      "vat": "8. Value-Added Tax (VAT), Fees & Legal Information",
+      "dubaiMarket": "9. Dubai Gold Market & Location Advantages",
+      "authenticity": "10. Authenticity Guarantee, Quality, Purity, and LBMA Certification",
+      "products": "11. Product Range & Investment",
+      "excellence": "12. The Excellence Portfolio: Uniqueness for Top Investors"
+    }
+  },
+  "legal": {
+    "legalNotice": "Legal Notice (Imprint)",
+    "gtc": "General Terms and Conditions (GTC)",
+    "privacy": "Privacy Policy & Cookie Policy",
+    "aml": "AML & KYC Directive Compliance Policy",
+    "shipping": "Shipping & Payment Terms"
+  }
+}
