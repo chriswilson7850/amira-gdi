@@ -158,7 +158,10 @@ export default function AdminPage() {
         toast.error(data.error || 'Login failed');
         return;
       }
-      setUser(data.user);
+      // Sync session to client-side Supabase
+      if (data.session) {
+        await supabase.auth.setSession(data.session);
+      }
 
       // Check admin role
       const { data: profile } = await supabase
@@ -174,6 +177,7 @@ export default function AdminPage() {
         return;
       }
 
+      setUser(data.user);
       toast.success('Logged in as admin');
     } catch {
       toast.error('Network error. Please try again.');
