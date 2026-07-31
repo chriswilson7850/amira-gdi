@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createServerSupabase } from '@/lib/supabase/server';
+import { authErrorResponse, requireAdmin, serviceRoleClient } from '@/lib/admin';
 
 export async function GET(
   _request: Request,
@@ -29,13 +30,13 @@ export async function PUT(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const auth = await requireAdmin();
+  const authErr = authErrorResponse(auth);
+  if (authErr) return authErr;
+
   try {
     const { id } = await params;
-    const supabase = await createServerSupabase();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const supabase = serviceRoleClient();
 
     const body = await request.json();
     const { name, slug, description, short_description, price, compare_price, sku, in_stock, featured, metadata, images, category_ids } = body;
@@ -63,23 +64,27 @@ export async function PUT(
 
     // Replace images
     if (images && Array.isArray(images)) {
-      await supabase.from('product_images').delete().eq('product_id', id);
+      const { error: delImgErr } = await supabase.from('product_images').delete().eq('product_id', id);
+      if (delImgErr) return NextResponse.json({ error: delImgErr.message }, { status: 400 });
       const imageRows = images.map((url: string, idx: number) => ({
         product_id: id,
         url,
         sort_order: idx,
       }));
-      await supabase.from('product_images').insert(imageRows);
+      const { error: insImgErr } = await supabase.from('product_images').insert(imageRows);
+      if (insImgErr) return NextResponse.json({ error: insImgErr.message }, { status: 400 });
     }
 
     // Replace categories
     if (category_ids && Array.isArray(category_ids)) {
-      await supabase.from('product_categories').delete().eq('product_id', id);
+      const { error: delCatErr } = await supabase.from('product_categories').delete().eq('product_id', id);
+      if (delCatErr) return NextResponse.json({ error: delCatErr.message }, { status: 400 });
       const catRows = category_ids.map((category_id: string) => ({
         product_id: id,
         category_id,
       }));
-      await supabase.from('product_categories').insert(catRows);
+      const { error: insCatErr } = await supabase.from('product_categories').insert(catRows);
+      if (insCatErr) return NextResponse.json({ error: insCatErr.message }, { status: 400 });
     }
 
     return NextResponse.json({ product });
@@ -92,13 +97,13 @@ export async function DELETE(
   _request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const auth = await requireAdmin();
+  const authErr = authErrorResponse(auth);
+  if (authErr) return authErr;
+
   try {
     const { id } = await params;
-    const supabase = await createServerSupabase();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const supabase = serviceRoleClient();
 
     const { error } = await supabase.from('products').delete().eq('id', id);
     if (error) return NextResponse.json({ error: error.message }, { status: 400 });

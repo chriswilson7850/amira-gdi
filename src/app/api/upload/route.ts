@@ -1,14 +1,13 @@
 import { NextResponse } from 'next/server';
-import { createServerSupabase } from '@/lib/supabase/server';
+import { authErrorResponse, requireAdmin, serviceRoleClient } from '@/lib/admin';
 
 export async function POST(request: Request) {
-  try {
-    const supabase = await createServerSupabase();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+  const auth = await requireAdmin();
+  const authErr = authErrorResponse(auth);
+  if (authErr) return authErr;
 
+  try {
+    const supabase = serviceRoleClient();
     const formData = await request.formData();
     const file = formData.get('file') as File | null;
     if (!file) {
