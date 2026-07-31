@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { ShoppingBag, Trash2, Plus, Minus, ArrowRight, ShieldCheck } from 'lucide-react';
 import { products } from '@/data/site-content';
 import { formatPrice } from '@/lib/utils';
+import { getCart, updateCartQuantity, removeFromCart, CART_EVENT } from '@/lib/cart';
 import { CURRENCY } from '@/lib/constants';
 
 interface CartItem {
@@ -17,6 +18,13 @@ export default function CartPage() {
   const t = useTranslations('cart');
   const locale = useLocale();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  useEffect(() => {
+    setCartItems(getCart());
+    const onUpdate = () => setCartItems(getCart());
+    window.addEventListener(CART_EVENT, onUpdate);
+    return () => window.removeEventListener(CART_EVENT, onUpdate);
+  }, []);
 
   const cartProducts = cartItems
     .map((item) => {
@@ -31,19 +39,12 @@ export default function CartPage() {
   );
 
   const updateQuantity = (productId: string, delta: number) => {
-    setCartItems((prev) =>
-      prev
-        .map((item) =>
-          item.productId === productId
-            ? { ...item, quantity: Math.max(1, item.quantity + delta) }
-            : item
-        )
-        .filter((item) => item.quantity > 0)
-    );
+    const current = cartItems.find((i) => i.productId === productId)?.quantity || 1;
+    updateCartQuantity(productId, current + delta);
   };
 
   const removeItem = (productId: string) => {
-    setCartItems((prev) => prev.filter((item) => item.productId !== productId));
+    removeFromCart(productId);
   };
 
   if (cartProducts.length === 0) {
@@ -72,10 +73,15 @@ export default function CartPage() {
         <div className="lg:col-span-2 space-y-4">
           {cartProducts.map((item) => (
             <div key={item.id} className="flex gap-4 p-4 bg-white border border-border rounded-lg">
-              <div className="w-24 h-24 shrink-0 bg-linear-to-br from-gold-light to-gold/30 rounded-md flex items-center justify-center">
-                <span className="text-lg font-bold text-primary-dark opacity-40">
-                  {item.name.split(' ')[0]}
-                </span>
+              <div className="w-24 h-24 shrink-0 bg-gray-100 rounded-md overflow-hidden flex items-center justify-center">
+                {item.images?.[0] ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={item.images[0]} alt={item.name} className="w-full h-full object-contain" />
+                ) : (
+                  <span className="text-lg font-bold text-primary-dark opacity-40">
+                    {item.name.split(' ')[0]}
+                  </span>
+                )}
               </div>
               <div className="flex-1 min-w-0">
                 <Link

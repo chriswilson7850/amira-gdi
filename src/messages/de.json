@@ -53,6 +53,9 @@
   "cart": {
     "title": "Warenkorb",
     "empty": "Ihr Warenkorb ist leer.",
+    "continueShopping": "Weiter einkaufen",
+    "orderSummary": "Bestellübersicht",
+    "subtotal": "Zwischensumme",
     "checkout": "Zur Kasse",
     "total": "Gesamtsumme",
     "remove": "Entfernen"

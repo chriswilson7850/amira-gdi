@@ -89,12 +89,17 @@ export default function ProductCarousel() {
                       href={`/${locale}/product/${product.slug}`}
                       className="group bg-white rounded-lg border border-border overflow-hidden hover:shadow-lg transition-shadow flex-1 min-w-0"
                     >
-                      <div className="aspect-square bg-gray-100 flex items-center justify-center p-4">
-                        <div className="w-full h-full bg-linear-to-br from-gold-light to-gold/30 rounded-lg flex items-center justify-center">
-                          <span className="text-3xl sm:text-4xl font-bold text-primary-dark opacity-50">
-                            {product.name.split(' ')[0]}
-                          </span>
-                        </div>
+                      <div className="aspect-square bg-gray-100 flex items-center justify-center p-4 overflow-hidden">
+                        {product.images?.[0] ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={product.images[0]} alt={product.name} className="w-full h-full object-contain" />
+                        ) : (
+                          <div className="w-full h-full bg-linear-to-br from-gold-light to-gold/30 rounded-lg flex items-center justify-center">
+                            <span className="text-4xl font-bold text-primary-dark opacity-50">
+                              {product.name.split(' ')[0]}
+                            </span>
+                          </div>
+                        )}
                       </div>
                       <div className="p-4">
                         {product.rating > 0 && (

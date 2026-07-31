@@ -6,7 +6,9 @@ import { useTranslations, useLocale } from 'next-intl';
 import { ShoppingCart, Star, ChevronRight } from 'lucide-react';
 import { products } from '@/data/site-content';
 import { formatPrice } from '@/lib/utils';
+import { addToCart } from '@/lib/cart';
 import { CURRENCY } from '@/lib/constants';
+import { toast } from 'sonner';
 
 export default function ProductDetailPage({
   params,
@@ -63,10 +65,17 @@ export default function ProductDetailPage({
       {/* Product Detail */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         {/* Image */}
-        <div className="aspect-square bg-linear-to-br from-gold-light to-gold/30 rounded-xl flex items-center justify-center p-8">
-          <span className="text-6xl font-bold text-primary-dark opacity-30">
-            {product.name.split(' ')[0]}
-          </span>
+        <div className="aspect-square bg-gray-100 rounded-xl flex items-center justify-center p-8 overflow-hidden">
+          {product.images?.[0] ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={product.images[0]} alt={product.name} className="w-full h-full object-contain" />
+          ) : (
+            <div className="w-full h-full bg-linear-to-br from-gold-light to-gold/30 rounded-lg flex items-center justify-center">
+              <span className="text-6xl font-bold text-primary-dark opacity-30">
+                {product.name.split(' ')[0]}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Info */}
@@ -110,7 +119,13 @@ export default function ProductDetailPage({
             {product.shortDescription}
           </p>
 
-          <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-primary text-white font-medium px-8 py-3 rounded-lg hover:bg-primary-dark transition-colors mb-6">
+          <button
+            onClick={() => {
+              addToCart(product.id);
+              toast.success('Added to cart');
+            }}
+            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-primary text-white font-medium px-8 py-3 rounded-lg hover:bg-primary-dark transition-colors mb-6"
+          >
             <ShoppingCart className="w-5 h-5" />
             {t('addToCart')}
           </button>
@@ -151,12 +166,17 @@ export default function ProductDetailPage({
                 href={`/${locale}/product/${rp.slug}`}
                 className="group bg-white rounded-lg border border-border overflow-hidden hover:shadow-lg transition-shadow"
               >
-                <div className="aspect-square bg-gray-100 flex items-center justify-center p-4">
-                  <div className="w-full h-full bg-linear-to-br from-gold-light to-gold/30 rounded-lg flex items-center justify-center">
-                    <span className="text-3xl font-bold text-primary-dark opacity-30">
-                      {rp.name.split(' ')[0]}
-                    </span>
-                  </div>
+                <div className="aspect-square bg-gray-100 flex items-center justify-center p-4 overflow-hidden">
+                  {rp.images?.[0] ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={rp.images[0]} alt={rp.name} className="w-full h-full object-contain" />
+                  ) : (
+                    <div className="w-full h-full bg-linear-to-br from-gold-light to-gold/30 rounded-lg flex items-center justify-center">
+                      <span className="text-3xl font-bold text-primary-dark opacity-30">
+                        {rp.name.split(' ')[0]}
+                      </span>
+                    </div>
+                  )}
                 </div>
                 <div className="p-4">
                   <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-2">

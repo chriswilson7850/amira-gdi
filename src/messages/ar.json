@@ -53,6 +53,9 @@
   "cart": {
     "title": "سلة التسوق",
     "empty": "سلتك فارغة حالياً.",
+    "continueShopping": "مواصلة التسوق",
+    "orderSummary": "ملخص الطلب",
+    "subtotal": "المجموع الفرعي",
     "checkout": "إتمام الشراء",
     "total": "المجموع",
     "remove": "إزالة"

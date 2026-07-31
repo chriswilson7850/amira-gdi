@@ -186,6 +186,24 @@ export default function AdminPage() {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'logout' }),
+      });
+      await supabase.auth.signOut();
+      setUser(null);
+      setProducts([]);
+      setCategories([]);
+      setActiveTab('products');
+      toast.success('Logged out');
+    } catch {
+      toast.error('Failed to log out');
+    }
+  };
+
   // ---------- Load Products ----------
   const loadProducts = async () => {
     setLoadingProducts(true);
@@ -201,8 +219,8 @@ export default function AdminPage() {
   };
 
   useEffect(() => {
-    if (activeTab === 'products') loadProducts();
-  }, [activeTab]);
+    if (user && activeTab === 'products') loadProducts();
+  }, [activeTab, user]);
 
   // ---------- Load Categories ----------
   const loadCategories = async () => {
@@ -219,7 +237,7 @@ export default function AdminPage() {
   };
 
   useEffect(() => {
-    if (activeTab === 'categories' || activeTab === 'products') loadCategories();
+    if (user && (activeTab === 'categories' || activeTab === 'products')) loadCategories();
   }, [activeTab]);
 
   // ---------- Product Handlers ----------
@@ -467,7 +485,16 @@ export default function AdminPage() {
     <div className="max-w-6xl mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-foreground">Admin Panel</h1>
-        <span className="text-sm text-text-muted">{user?.email}</span>
+        <div className="flex items-center gap-3">
+          <span className="text-sm text-text-muted">{user?.email}</span>
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-2 px-4 py-2 border border-border rounded-lg text-sm text-text-muted hover:bg-gray-50 hover:text-red-600 transition-colors"
+          >
+            <LogOut className="w-4 h-4" />
+            Logout
+          </button>
+        </div>
       </div>
 
       {/* Tabs */}

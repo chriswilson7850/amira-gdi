@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { ShoppingCart, Menu, X, ChevronDown } from 'lucide-react';
+import { getCartCount, CART_EVENT } from '@/lib/cart';
 import { SITE_NAME } from '@/lib/constants';
 
 export default function Header() {
@@ -12,6 +13,14 @@ export default function Header() {
   const locale = useLocale();
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    setCartCount(getCartCount());
+    const onUpdate = () => setCartCount(getCartCount());
+    window.addEventListener(CART_EVENT, onUpdate);
+    return () => window.removeEventListener(CART_EVENT, onUpdate);
+  }, []);
 
   const navLinks = [
     { href: `/${locale}`, label: t('home') },
@@ -69,9 +78,11 @@ export default function Header() {
               aria-label={t('cart')}
             >
               <ShoppingCart className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-medium">
-                0
-              </span>
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-medium">
+                  {cartCount}
+                </span>
+              )}
             </Link>
 
             {/* Mobile Menu Button */}

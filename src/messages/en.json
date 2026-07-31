@@ -53,6 +53,9 @@
   "cart": {
     "title": "Shopping Cart",
     "empty": "Your cart is currently empty.",
+    "continueShopping": "Continue Shopping",
+    "orderSummary": "Order Summary",
+    "subtotal": "Subtotal",
     "checkout": "Proceed to Checkout",
     "total": "Total",
     "remove": "Remove"

@@ -6,7 +6,9 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Star, ShoppingCart } from 'lucide-react';
 import { products, categories } from '@/data/site-content';
 import { formatPrice } from '@/lib/utils';
+import { addToCart } from '@/lib/cart';
 import { CURRENCY } from '@/lib/constants';
+import { toast } from 'sonner';
 
 export default function ShopPage() {
   const t = useTranslations('shop');
@@ -102,12 +104,17 @@ export default function ShopPage() {
             className="group bg-white rounded-lg border border-border overflow-hidden hover:shadow-lg transition-shadow"
           >
             <Link href={`/${locale}/product/${product.slug}`}>
-              <div className="aspect-square bg-gray-100 flex items-center justify-center p-6">
-                <div className="w-full h-full bg-linear-to-br from-gold-light to-gold/30 rounded-lg flex items-center justify-center">
-                  <span className="text-3xl font-bold text-primary-dark opacity-40">
-                    {product.name.split(' ')[0]}
-                  </span>
-                </div>
+              <div className="aspect-square bg-gray-100 flex items-center justify-center p-6 overflow-hidden">
+                {product.images?.[0] ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={product.images[0]} alt={product.name} className="w-full h-full object-contain" />
+                ) : (
+                  <div className="w-full h-full bg-linear-to-br from-gold-light to-gold/30 rounded-lg flex items-center justify-center">
+                    <span className="text-3xl font-bold text-primary-dark opacity-40">
+                      {product.name.split(' ')[0]}
+                    </span>
+                  </div>
+                )}
               </div>
             </Link>
             <div className="p-4">
@@ -126,7 +133,13 @@ export default function ShopPage() {
               <p className="text-lg font-bold text-primary mb-3">
                 {formatPrice(product.price, CURRENCY.code)}
               </p>
-              <button className="w-full flex items-center justify-center gap-2 bg-primary text-white text-sm font-medium py-2.5 rounded-lg hover:bg-primary-dark transition-colors">
+              <button
+                onClick={() => {
+                  addToCart(product.id);
+                  toast.success('Added to cart');
+                }}
+                className="w-full flex items-center justify-center gap-2 bg-primary text-white text-sm font-medium py-2.5 rounded-lg hover:bg-primary-dark transition-colors"
+              >
                 <ShoppingCart className="w-4 h-4" />
                 {t('addToCart')}
               </button>
