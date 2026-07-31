@@ -1,0 +1,83 @@
+<!doctype html>
+<!--
+  Amira Gold Investment Limited — "Confirm signup" email template.
+  Paste the body of this HTML into:
+  Supabase Dashboard → Authentication → Emails → Templates → Confirm signup
+  (enable "Customize templates" if needed).
+
+  Supabase variables available in this template:
+    {{ .ConfirmationURL }}  -> the one-time confirmation link
+    {{ .SiteURL }}          -> your site URL
+    {{ .Email }}            -> the user's email
+    {{ .Token }}            -> raw confirmation token (optional)
+-->
+<html lang="en">
+<body style="margin:0;padding:0;background:#f4f1ea;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f1ea;padding:24px 16px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+
+          <!-- Header -->
+          <tr>
+            <td style="background:linear-gradient(135deg,#1a1a2e,#23233a);padding:28px 32px;text-align:center;">
+              <img src="{{ .SiteURL }}/images/logo.png" alt="Amira Gold Investment Limited" width="56" height="56" style="border-radius:8px;" />
+              <div style="font-size:18px;font-weight:700;color:#e8c66a;letter-spacing:0.5px;margin-top:10px;">Amira Gold Investment Limited</div>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="padding:32px;">
+              <h1 style="font-size:20px;color:#232323;margin:0 0 6px 0;">Welcome to Amira GDI 👋</h1>
+              <p style="font-size:14px;color:#555;margin:0 0 4px 0;">Hello{{ if .Email }} {{ .Email }}{{ end }},</p>
+              <p style="font-size:14px;color:#555;line-height:1.7;margin:16px 0;">
+                Thank you for creating an account with <strong>Amira Gold Investment Limited</strong> — your trusted
+                partner for investment-grade gold and silver in Dubai.
+              </p>
+              <p style="font-size:14px;color:#555;line-height:1.7;margin:0 0 20px 0;">
+                Please confirm your email address to activate your account and start tracking your orders:
+              </p>
+
+              <!-- Confirm button -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:24px 0;">
+                <tr>
+                  <td align="center">
+                    <a href="{{ .ConfirmationURL }}"
+                       style="display:inline-block;background:#b8860b;color:#ffffff;text-decoration:none;font-size:15px;font-weight:700;padding:14px 36px;border-radius:8px;">
+                      Confirm my email
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="font-size:12px;color:#999;line-height:1.6;margin:0;">
+                If the button doesn't work, copy and paste this link into your browser:<br/>
+                <a href="{{ .ConfirmationURL }}" style="color:#b8860b;word-break:break-all;">{{ .ConfirmationURL }}</a>
+              </p>
+              <p style="font-size:12px;color:#999;line-height:1.6;margin:12px 0 0 0;">
+                If you didn't create this account, you can safely ignore this email.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background:#faf8f3;padding:20px 32px;text-align:center;border-top:1px solid #e6e1d6;">
+              <div style="font-size:12px;color:#777;line-height:1.7;">
+                Amira Gold Investment Limited · Dubai, United Arab Emirates<br/>
+                Unified Commercial Register 7012655093 · Precious Metals License 30500601/11
+              </div>
+              <div style="font-size:11px;color:#999;margin-top:8px;">
+                <a href="{{ .SiteURL }}" style="color:#b8860b;text-decoration:none;">{{ .SiteURL }}</a> ·
+                sales@amira-gdi.live
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

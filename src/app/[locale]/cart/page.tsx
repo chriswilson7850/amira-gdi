@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
-import { ShoppingBag, Trash2, Plus, Minus, ArrowRight, ShieldCheck } from 'lucide-react';
-import { products } from '@/data/site-content';
+import { ShoppingBag, Trash2, Plus, Minus, ArrowRight, ShieldCheck, Loader2 } from 'lucide-react';
+import { getCatalog, type Catalog } from '@/lib/catalog';
+import type { Product } from '@/types';
 import { formatPrice } from '@/lib/utils';
 import { getCart, updateCartQuantity, removeFromCart, CART_EVENT } from '@/lib/cart';
 import { CURRENCY } from '@/lib/constants';
@@ -18,6 +19,17 @@ export default function CartPage() {
   const t = useTranslations('cart');
   const locale = useLocale();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [catalog, setCatalog] = useState<Catalog | null>(null);
+
+  useEffect(() => {
+    let mounted = true;
+    getCatalog().then((c) => {
+      if (mounted) setCatalog(c);
+    });
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   useEffect(() => {
     setCartItems(getCart());
@@ -26,12 +38,12 @@ export default function CartPage() {
     return () => window.removeEventListener(CART_EVENT, onUpdate);
   }, []);
 
-  const cartProducts = cartItems
-    .map((item) => {
-      const product = products.find((p) => p.id === item.productId);
-      return product ? { ...product, quantity: item.quantity } : null;
+  const cartProducts = (catalog?.products ?? [])
+    .map((product) => {
+      const item = cartItems.find((i) => i.productId === product.id);
+      return item ? { ...product, quantity: item.quantity } : null;
     })
-    .filter(Boolean) as (typeof products[number] & { quantity: number })[];
+    .filter(Boolean) as (Product & { quantity: number })[];
 
   const subtotal = cartProducts.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -46,6 +58,14 @@ export default function CartPage() {
   const removeItem = (productId: string) => {
     removeFromCart(productId);
   };
+
+  if (!catalog) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-gold" />
+      </div>
+    );
+  }
 
   if (cartProducts.length === 0) {
     return (
@@ -148,10 +168,13 @@ export default function CartPage() {
                 </span>
               </div>
             </div>
-            <button className="w-full mt-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold transition-colors flex items-center justify-center gap-2">
+            <Link
+              href={`/${locale}/checkout`}
+              className="w-full mt-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
+            >
               <ShieldCheck className="w-5 h-5" />
               {t('checkout')}
-            </button>
+            </Link>
           </div>
         </div>
       </div>

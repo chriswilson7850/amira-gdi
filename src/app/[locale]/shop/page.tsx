@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
-import { Star, ShoppingCart } from 'lucide-react';
-import { products, categories } from '@/data/site-content';
+import { Star, ShoppingCart, Loader2 } from 'lucide-react';
+import { getCatalog, type Catalog } from '@/lib/catalog';
 import { formatPrice } from '@/lib/utils';
 import { addToCart } from '@/lib/cart';
 import { CURRENCY } from '@/lib/constants';
@@ -15,6 +15,20 @@ export default function ShopPage() {
   const locale = useLocale();
   const [activeCategory, setActiveCategory] = useState('all');
   const [sortBy, setSortBy] = useState('default');
+  const [catalog, setCatalog] = useState<Catalog | null>(null);
+
+  useEffect(() => {
+    let mounted = true;
+    getCatalog().then((c) => {
+      if (mounted) setCatalog(c);
+    });
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const products = catalog?.products ?? [];
+  const categories = catalog?.categories ?? [];
 
   const filteredProducts =
     activeCategory === 'all'
@@ -97,6 +111,11 @@ export default function ShopPage() {
       </div>
 
       {/* Product Grid */}
+      {!catalog ? (
+        <div className="flex justify-center py-20">
+          <Loader2 className="w-8 h-8 animate-spin text-gold" />
+        </div>
+      ) : (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {sortedProducts.map((product) => (
           <div
@@ -147,6 +166,7 @@ export default function ShopPage() {
           </div>
         ))}
       </div>
+      )}
     </div>
   );
 }

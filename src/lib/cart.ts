@@ -47,6 +47,10 @@ export function removeFromCart(productId: string) {
   saveCart(getCart().filter((item) => item.productId !== productId));
 }
 
+export function clearCart() {
+  saveCart([]);
+}
+
 export function getCartCount(): number {
   return getCart().reduce((sum, item) => sum + item.quantity, 0);
 }

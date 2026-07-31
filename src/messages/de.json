@@ -12,6 +12,7 @@
     "myAccount": "Mein Konto",
     "aboutUs": "Über uns",
     "storage": "Lagerung",
+    "trackOrder": "Sendung verfolgen",
     "language": "Deutsch",
     "openMenu": "Menü öffnen",
     "skipToContent": "Zum Inhalt springen"
@@ -137,6 +138,7 @@
     "email": "sales@amira-gdi.live",
     "legalNotice": "Impressum",
     "gtc": "Allgemeine Geschäftsbedingungen (AGB)",
+    "termsOfSale": "Verkaufsbedingungen",
     "privacy": "Datenschutz- und Cookie-Richtlinie",
     "aml": "AML- & KYC-Richtlinie",
     "shipping": "Versand- und Zahlungsbedingungen",
@@ -175,6 +177,7 @@
   "legal": {
     "legalNotice": "Impressum",
     "gtc": "Allgemeine Geschäftsbedingungen (AGB)",
+    "termsOfSale": "Verkaufsbedingungen",
     "privacy": "Datenschutz- und Cookie-Richtlinie",
     "aml": "AML- & KYC-Richtlinie",
     "shipping": "Versand- und Zahlungsbedingungen"

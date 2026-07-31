@@ -27,6 +27,7 @@ export default function Header() {
     { href: `/${locale}/shop`, label: t('shop') },
     { href: `/${locale}/cart`, label: t('cart') },
     { href: `/${locale}/my-account`, label: t('myAccount') },
+    { href: `/${locale}/track-order`, label: t('trackOrder') },
     { href: `/${locale}/about-us`, label: t('aboutUs') },
     { href: `/${locale}/secure-storage-solutions`, label: t('storage') },
   ];

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
-import { products } from '@/data/site-content';
+import { getCatalog, type Catalog } from '@/lib/catalog';
 import { formatPrice } from '@/lib/utils';
 import { CURRENCY } from '@/lib/constants';
 
@@ -12,8 +12,20 @@ export default function ProductCarousel() {
   const locale = useLocale();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [itemsPerSlide, setItemsPerSlide] = useState(1);
-  const featured = products.filter((p) => p.featured);
-  const totalSlides = Math.ceil(featured.length / itemsPerSlide);
+  const [catalog, setCatalog] = useState<Catalog | null>(null);
+
+  useEffect(() => {
+    let mounted = true;
+    getCatalog().then((c) => {
+      if (mounted) setCatalog(c);
+    });
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const featured = (catalog?.products ?? []).filter((p) => p.featured);
+  const totalSlides = Math.max(1, Math.ceil(featured.length / itemsPerSlide));
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % totalSlides);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
@@ -54,6 +66,16 @@ export default function ProductCarousel() {
     const start = slideIndex * itemsPerSlide;
     return featured.slice(start, start + itemsPerSlide);
   };
+
+  if (!catalog) {
+    return (
+      <section className="py-16 bg-surface">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="w-8 h-8 border-4 border-gold border-t-transparent rounded-full animate-spin mx-auto" />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-16 bg-surface">

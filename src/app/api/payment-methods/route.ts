@@ -25,11 +25,11 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { name, slug, description, icon, enabled, sort_order } = body;
+    const { name, slug, description, icon, enabled, sort_order, details } = body;
 
     const { data: method, error } = await supabase
       .from('payment_methods')
-      .insert({ name, slug, description, icon: icon || 'banknote', enabled: enabled ?? true, sort_order: sort_order ?? 0 })
+      .insert({ name, slug, description, icon: icon || 'banknote', enabled: enabled ?? true, sort_order: sort_order ?? 0, details: details || {} })
       .select()
       .single();
 
@@ -49,11 +49,20 @@ export async function PUT(request: Request) {
     }
 
     const body = await request.json();
-    const { id, name, slug, description, icon, enabled, sort_order } = body;
+    const { id, name, slug, description, icon, enabled, sort_order, details } = body;
+
+    const patch: Record<string, unknown> = {};
+    if (name !== undefined) patch.name = name;
+    if (slug !== undefined) patch.slug = slug;
+    if (description !== undefined) patch.description = description;
+    if (icon !== undefined) patch.icon = icon;
+    if (enabled !== undefined) patch.enabled = enabled;
+    if (sort_order !== undefined) patch.sort_order = sort_order;
+    if (details !== undefined) patch.details = details;
 
     const { data: method, error } = await supabase
       .from('payment_methods')
-      .update({ name, slug, description, icon, enabled, sort_order })
+      .update(patch)
       .eq('id', id)
       .select()
       .single();

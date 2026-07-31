@@ -65,6 +65,11 @@ export default function Footer() {
                   My Account
                 </Link>
               </li>
+              <li>
+                <Link href="/track-order" className="hover:text-gold transition-colors">
+                  Track Order
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -82,6 +87,11 @@ export default function Footer() {
               <li>
                 <Link href="/general-terms-and-conditions-gtc" className="hover:text-gold transition-colors">
                   {t('gtc')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms-of-sale" className="hover:text-gold transition-colors">
+                  {t('termsOfSale')}
                 </Link>
               </li>
               <li>

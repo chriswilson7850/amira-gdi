@@ -1,11 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { Mail, Lock, LogIn, UserPlus, User, LogOut, Package, Loader2 } from 'lucide-react';
+import { Mail, Lock, LogIn, UserPlus, User, LogOut, Package, Loader2, Truck, ExternalLink } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
 import { toast } from 'sonner';
+import { formatPrice } from '@/lib/utils';
 
 export default function MyAccountPage() {
   const t = useTranslations('myAccount');
@@ -64,9 +66,12 @@ export default function MyAccountPage() {
         toast.error(data.error || 'An error occurred');
         return;
       }
-      setUser(data.user);
+      // When email confirmation is enabled, signup returns no session — the
+      // user must confirm their email before we show the logged-in dashboard.
+      const loggedIn = Boolean(data.session);
+      setUser(loggedIn ? data.user : null);
       toast.success(isLogin ? 'Logged in successfully' : 'Account created successfully');
-      if (!isLogin) {
+      if (!isLogin && !loggedIn) {
         toast.info('Please check your email to confirm your account.');
       }
     } catch {
@@ -134,7 +139,7 @@ export default function MyAccountPage() {
             <div className="space-y-3">
               {orders.map((order) => (
                 <div key={order.id} className="border border-border rounded-lg p-4 text-sm">
-                  <div className="flex justify-between items-center mb-2">
+                  <div className="flex justify-between items-center mb-3">
                     <span className="text-text-muted">Order #{order.id.slice(0, 8)}</span>
                     <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
                       order.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
@@ -147,9 +152,49 @@ export default function MyAccountPage() {
                       {order.status}
                     </span>
                   </div>
+
+                  {/* Products with thumbnails */}
+                  {Array.isArray(order.order_items) && order.order_items.length > 0 && (
+                    <div className="flex flex-wrap items-center gap-3 mb-3">
+                      {order.order_items.slice(0, 4).map((item: any) => (
+                        <div key={item.id} className="flex items-center gap-2">
+                          {item.product_image ? (
+                            <img
+                              src={item.product_image}
+                              alt={item.product_name || 'Product'}
+                              className="w-12 h-12 object-cover rounded-lg border border-border"
+                            />
+                          ) : (
+                            <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center">
+                              <Package className="w-5 h-5 text-text-muted" />
+                            </div>
+                          )}
+                          <div>
+                            <p className="text-xs font-medium text-foreground max-w-[160px] truncate">{item.product_name}</p>
+                            <p className="text-xs text-text-muted">× {item.quantity}</p>
+                          </div>
+                        </div>
+                      ))}
+                      {order.order_items.length > 4 && (
+                        <span className="text-xs text-text-muted">+{order.order_items.length - 4} more</span>
+                      )}
+                    </div>
+                  )}
+
                   <div className="flex justify-between items-center">
-                    <span className="text-foreground font-medium">€{order.total?.toFixed(2)}</span>
+                    <span className="text-foreground font-medium">{formatPrice(Number(order.total))}</span>
                     <span className="text-text-muted text-xs">{new Date(order.created_at).toLocaleDateString()}</span>
+                  </div>
+
+                  <div className="mt-3 pt-3 border-t border-border flex justify-end">
+                    <Link
+                      href={`/track-order?ref=${order.id.slice(0, 8)}`}
+                      className="flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
+                    >
+                      <Truck className="w-3.5 h-3.5" />
+                      Track order
+                      <ExternalLink className="w-3 h-3" />
+                    </Link>
                   </div>
                 </div>
               ))}

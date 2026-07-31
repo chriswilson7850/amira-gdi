@@ -9,7 +9,7 @@ export async function GET() {
       .select(`
         *,
         product_images(url, sort_order),
-        product_categories!inner(category_id)
+        product_categories!inner(category_id, categories(name, slug))
       `)
       .order('created_at', { ascending: false });
 
