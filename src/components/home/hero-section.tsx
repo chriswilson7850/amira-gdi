@@ -10,9 +10,9 @@ export default function HeroSection() {
 
   return (
     <section className="relative bg-linear-to-br from-secondary via-secondary to-primary-dark text-white overflow-hidden">
-      {/* Hero background image */}
+      {/* Hero background image — anchored right on mobile so the CEO (right side of image) stays visible, centered on larger screens */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-right bg-no-repeat md:bg-center"
         style={{ backgroundImage: "url('/images/hero-bg.png')" }}
       />
       {/* Dark overlay for readability */}
