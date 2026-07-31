@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+  <defs>
+    <linearGradient id="front" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FDE394"/>
+      <stop offset="0.5" stop-color="#F5C24C"/>
+      <stop offset="1" stop-color="#D99E2B"/>
+    </linearGradient>
+    <linearGradient id="top" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#F8D97C"/>
+      <stop offset="1" stop-color="#FFF3C4"/>
+    </linearGradient>
+    <linearGradient id="side" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#C98B1F"/>
+      <stop offset="1" stop-color="#8A5E10"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0.45" stop-color="#ffffff" stop-opacity="0.4"/>
+      <stop offset="0.55" stop-color="#ffffff" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="shadow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#000000" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <ellipse cx="400" cy="668" rx="280" ry="40" fill="url(#shadow)" filter="url(#blur)"/>
+
+  <path d="M160,320 L640,320 L600,255 L200,255 Z" fill="url(#top)"/>
+  <path d="M640,320 L600,255 L600,535 L640,600 Z" fill="url(#side)"/>
+  <rect x="160" y="320" width="480" height="280" rx="18" fill="url(#front)"/>
+
+  <rect x="188" y="348" width="424" height="224" rx="12" fill="none" stroke="#7a5510" stroke-opacity="0.55" stroke-width="3"/>
+  <rect x="198" y="358" width="404" height="204" rx="9" fill="none" stroke="#7a5510" stroke-opacity="0.3" stroke-width="1.5"/>
+
+  <rect x="160" y="320" width="480" height="280" rx="18" fill="url(#shine)"/>
+
+  <text x="400" y="392" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="29" letter-spacing="8" fill="#7a5510" font-weight="bold">AMIRA GOLD</text>
+  <text x="400" y="470" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="120" font-weight="bold" fill="#5a3d00">500 g</text>
+  <text x="400" y="522" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="34" letter-spacing="6" fill="#7a5510">999.9 FINE GOLD</text>
+  <text x="400" y="560" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="30" letter-spacing="6" fill="#8a6410">24 KARAT</text>
+
+  <text x="582" y="580" text-anchor="middle" font-family="monospace" font-size="14" fill="#7a5510" opacity="0.8">AGD-24-0500-001</text>
+</svg>
