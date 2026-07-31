@@ -51,6 +51,17 @@ export function clearCart() {
   saveCart([]);
 }
 
+// Remove cart entries whose product no longer exists in the catalog.
+// Keeps the header badge and cart page consistent (no phantom counts).
+export function pruneCart(validProductIds: string[]) {
+  const valid = new Set(validProductIds);
+  const cart = getCart();
+  const filtered = cart.filter((item) => valid.has(item.productId));
+  if (filtered.length !== cart.length) {
+    saveCart(filtered);
+  }
+}
+
 export function getCartCount(): number {
   return getCart().reduce((sum, item) => sum + item.quantity, 0);
 }

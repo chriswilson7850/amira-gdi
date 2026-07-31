@@ -7,7 +7,7 @@ import { ShoppingBag, Trash2, Plus, Minus, ArrowRight, ShieldCheck, Loader2 } fr
 import { getCatalog, type Catalog } from '@/lib/catalog';
 import type { Product } from '@/types';
 import { formatPrice } from '@/lib/utils';
-import { getCart, updateCartQuantity, removeFromCart, CART_EVENT } from '@/lib/cart';
+import { getCart, updateCartQuantity, removeFromCart, pruneCart, CART_EVENT } from '@/lib/cart';
 import { CURRENCY } from '@/lib/constants';
 
 interface CartItem {
@@ -30,6 +30,13 @@ export default function CartPage() {
       mounted = false;
     };
   }, []);
+
+  // Drop stale cart entries (products that no longer exist) so the header
+  // badge and cart page stay in sync and never show a phantom count.
+  useEffect(() => {
+    if (!catalog) return;
+    pruneCart((catalog.products ?? []).map((p) => p.id));
+  }, [catalog]);
 
   useEffect(() => {
     setCartItems(getCart());
