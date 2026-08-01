@@ -139,6 +139,10 @@ export default function ProductCarousel() {
                       </div>
                     </Link>
                   ))}
+                  {/* Fill remaining slots so every slide keeps equal-width cards (prevents taller last-slide cards from stretching the whole track) */}
+                  {Array.from({ length: itemsPerSlide - getSlideItems(slideIndex).length }).map((_, i) => (
+                    <div key={`slot-${i}`} className="flex-1 min-w-0" aria-hidden="true" />
+                  ))}
                 </div>
               ))}
             </div>
