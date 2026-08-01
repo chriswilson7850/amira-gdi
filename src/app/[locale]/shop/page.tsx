@@ -30,6 +30,15 @@ export default function ShopPage() {
   const products = catalog?.products ?? [];
   const categories = catalog?.categories ?? [];
 
+  // Top-level categories only (children like "Gold bars" are hidden), ordered Gold → Jewelry → rest.
+  const categoryOrder: Record<string, number> = { gold: 0, jewelry: 1 };
+  const topLevelCategories = [...categories.filter((c) => !c.parentId)].sort((a, b) => {
+    const ao = categoryOrder[a.slug] ?? 99;
+    const bo = categoryOrder[b.slug] ?? 99;
+    if (ao !== bo) return ao - bo;
+    return a.name.localeCompare(b.name);
+  });
+
   const filteredProducts =
     activeCategory === 'all'
       ? products
@@ -78,9 +87,7 @@ export default function ShopPage() {
         >
           {t('allProducts')}
         </button>
-        {categories
-          .filter((c) => !c.parentId)
-          .map((cat) => (
+        {topLevelCategories.map((cat) => (
             <button
               key={cat.slug}
               onClick={() => setActiveCategory(cat.slug)}
